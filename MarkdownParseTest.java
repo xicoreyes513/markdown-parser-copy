@@ -98,4 +98,4 @@ public class MarkdownParseTest {
         ArrayList<String> links = MarkdownParse.getLinks(content);
         assertEquals(expected, links);
     }
-}
+}  
