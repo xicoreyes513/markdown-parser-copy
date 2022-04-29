@@ -104,7 +104,7 @@ public class MarkdownParseTest {
         ArrayList<String> expected =  new ArrayList<String>();
         expected.add("https://something.com");
         Path fileName = Path.of(
-            "/Users/xicoreyes/Documents/GitHub/markdown-parser-copy/test-file9.md");
+            "test-file9.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(content);
         assertEquals(expected, links);
