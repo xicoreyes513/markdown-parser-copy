@@ -1,5 +1,5 @@
 //https://howtodoinjava.com/java/io/java-read-file-to-string-examples/
-
+//Hello 
 
 import java.io.File;
 import java.io.IOException;
@@ -46,8 +46,6 @@ public class MarkdownParse {
         String content = Files.readString(fileName);
         ArrayList<String> links = getLinks(content);
 	    System.out.println(links);
-
-        System.out.println("Hello");
 
 
     }
