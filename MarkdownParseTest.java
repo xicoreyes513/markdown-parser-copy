@@ -46,7 +46,7 @@ public class MarkdownParseTest {
         expected.add("a.com(())");
         expected.add("example.com");
         Path fileName = Path.of(
-            "snippet1.md");
+            "snippet2.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(content);
 
@@ -60,7 +60,7 @@ public class MarkdownParseTest {
         expected.add("a.com(())");
         expected.add("example.com");
         Path fileName = Path.of(
-            "snippet1.md");
+            "snippet2.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse2.getLinks(content);
 
@@ -72,7 +72,7 @@ public class MarkdownParseTest {
         ArrayList<String> expected =  new ArrayList<String>();
         expected.add("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
         Path fileName = Path.of(
-            "snippet1.md");
+            "snippet3.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(content);
 
@@ -84,7 +84,7 @@ public class MarkdownParseTest {
         ArrayList<String> expected =  new ArrayList<String>();
         expected.add("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
         Path fileName = Path.of(
-            "snippet1.md");
+            "snippet3.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse2.getLinks(content);
 
