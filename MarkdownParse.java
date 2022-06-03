@@ -8,39 +8,18 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.commonmark.node.*;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
+
 public class MarkdownParse {
 
     public static ArrayList<String> getLinks(String markdown) {
-        ArrayList<String> toReturn = new ArrayList<>();
-        //find the next [, then find the ], then find the (, then read link upto next )
-        int currentIndex = 0;
-        while(currentIndex < markdown.length()) {
-            int openBracket = markdown.indexOf("[", currentIndex);
-            int closeBracket = markdown.indexOf("]", openBracket);
-            int openParen = markdown.indexOf("(", closeBracket);
-            int closeParen = markdown.indexOf(")", openParen);
+        Node node2 = parser.parse(markdown);
+        GetLinksVisitor visitor2 = new GetLinksVisitor();
+        node2.accept(visitor2);
 
-            if (openBracket == -1 || closeBracket == -1 || 
-            openParen == -1 || closeParen == -1){
-                break;
-            }
-
-            if (openBracket > closeBracket || closeBracket > openParen ||
-            openParen > closeParen){
-                break;
-            }
-
-
-
-            if (openParen == closeBracket + 1 &&
-                markdown.indexOf("!") != openBracket - 1){
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
-            }
-            currentIndex = closeParen + 1;
-            
-        }
-
-        return toReturn;
+        return visitor2.links;
     }
 
     public static void main(String[] args) throws IOException {

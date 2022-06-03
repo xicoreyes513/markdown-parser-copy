@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import org.commonmark.node.*;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
@@ -15,6 +17,10 @@ import org.commonmark.renderer.html.HtmlRenderer;
         node.accept(visitor);
         System.out.println(visitor.wordCount);
 
+        Node node2 = parser.parse("[Link](https://www.youtube.com)");
+        GetLinksVisitor visitor2 = new GetLinksVisitor();
+        node2.accept(visitor2);
+        System.out.println(visitor2.links);
      }
  }
 
@@ -30,6 +36,16 @@ class WordCountVisitor extends AbstractVisitor {
 
         // Descend into children (could be omitted in this case because Text nodes don't have children).
         visitChildren(text);
+    }
+}
+
+class GetLinksVisitor extends AbstractVisitor{
+    ArrayList<String> links = new ArrayList<>();
+
+    @Override
+    public void visit(Link link){
+        links.add(link.getDestination());
+        visitChildren(link);
     }
 }
 
