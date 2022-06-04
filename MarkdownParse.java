@@ -15,11 +15,12 @@ import org.commonmark.renderer.html.HtmlRenderer;
 public class MarkdownParse {
 
     public static ArrayList<String> getLinks(String markdown) {
-        Node node2 = parser.parse(markdown);
-        GetLinksVisitor visitor2 = new GetLinksVisitor();
-        node2.accept(visitor2);
+        Parser parser = Parser.builder().build();
+        Node node = parser.parse(markdown);
+        GetLinksVisitor visitor = new GetLinksVisitor();
+        node.accept(visitor);
 
-        return visitor2.links;
+        return visitor.links;
     }
 
     public static void main(String[] args) throws IOException {
@@ -29,5 +30,15 @@ public class MarkdownParse {
 	    System.out.println(links);
 
 
+    }
+}
+
+class GetLinksVisitor extends AbstractVisitor{
+    ArrayList<String> links = new ArrayList<>();
+
+    @Override
+    public void visit(Link link){
+        links.add(link.getDestination());
+        visitChildren(link);
     }
 }
